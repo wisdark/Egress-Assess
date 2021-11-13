@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 '''
 
 This is for functions potentially used by all modules
@@ -61,6 +62,11 @@ def cli_parser():
     ftp_options.add_argument(
         "--password", metavar="pass123", default=None,
         help="Password for FTP server authentication.")
+
+    smb_options= parser.add_argument_group('SMB Options')
+    smb_options.add_argument(
+        "--smb2", default=False, action='store_true',
+        help="Enable SMB v2 Support")
 
     data_content = parser.add_argument_group('Data Content Options')
     data_content.add_argument(
@@ -142,6 +148,9 @@ def randomString(length=-1):
     random_string = ''.join(random.choice(string.ascii_letters) for x in range(length))
     return random_string
 
+def received_file(filename):
+    print("[+] {} - Received File - {}".format(time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()), filename))
+
 
 def title_screen():
     os.system('clear')
@@ -181,3 +190,31 @@ def writeout_text_data(incoming_data):
         out_file.write(incoming_data)
 
     return file_name
+
+def class_info():
+    class_image = '''MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+M                                                                M
+M       .”cCCc”.                                                 M
+M      /cccccccc\\           Our Upcoming Trainings:              M
+M      §cccccccc|                                                M
+M      :ccccccccP       BlackHat Asia >> Mar 31 - Apr 03 2020    M
+M      \\cccccccc()                 Singapore                     M
+M       \\ccccccccD         https://www.blackhat.com              M
+M       |cccccccc\\       _                                       M
+M       |ccccccccc)     //    Charlotte  >>  Jan 13-16 2020      M
+M       |cccccc|=      //               Charlotte, NC            M
+M      /°°°°°°”-.     (CCCC)                                     M
+M      ;----._  _._   |cccc|                                     M
+M   .*°       °°   °. \\cccc/                                     M
+M  /  /       (      )/ccc/                                      M
+M  |_/        |    _.°cccc|                                      M
+M  |/         °^^^°ccccccc/                                      M
+M  /            \\cccccccc/                                       M
+M /              \\cccccc/                                        M
+M |                °*°                                           M
+M /                  \\      Psss. Follow us on >> Twitter        M
+M °*-.__________..-*°°                         >> Facebook       M
+M  \\WWWWWWWWWWWWWWWW/                          >> LinkedIn       M
+M   \\WWWWWWWWWWWWWW/                                             M
+MMMMM|WWWWWWWWWWWW|MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM'''
+    print(class_image)
